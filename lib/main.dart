@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:recardify/routing.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
   CustomNavigationHelper.instance;
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

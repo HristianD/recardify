@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services'
 }
 
 def localProperties = new Properties()
@@ -24,12 +25,18 @@ if (flutterVersionName == null) {
 
 android {
     namespace "hpic.recardify.recardify"
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    compileSdk 33
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    dependencies {
+        implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
+        implementation("com.google.firebase:firebase-database")
+        implementation("com.google.firebase:firebase-analytics")
+        implementation('com.google.code.gson:gson:2.10.1')
     }
 
     defaultConfig {
@@ -41,6 +48,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        minSdkVersion 23
     }
 
     buildTypes {
@@ -49,7 +57,12 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+
+        debug {
+            debuggable true
+        }
     }
+    buildToolsVersion '33.0.1'
 }
 
 flutter {
