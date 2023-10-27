@@ -11,56 +11,17 @@ class BottomNavigationPage extends StatefulWidget {
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
     static const String appTitle = "Recardify";
-    int _selectedIndex = 0;
 
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-            appBar: AppBar(title: const Text(appTitle), centerTitle: true),
+            appBar: AppBar(title: const Text(appTitle, style: TextStyle(color: Color(0xff3a887c), fontWeight: FontWeight.bold)), centerTitle: true),
             body: SafeArea(
               child: widget.child
             ),
-            drawer: Drawer(
-              // Add a ListView to the drawer. This ensures the user can scroll
-              // through the options in the drawer if there isn't enough vertical
-              // space to fit everything.
-              // backgroundColor: Colors.green,
-                child: ListView(
-                  // Important: Remove any padding from the ListView.
-                    padding: EdgeInsets.zero,
-                    children: <Widget>[
-                      Center(
-                          child: Container(
-                              margin: const EdgeInsets.only(top: 100),
-                              child: Column(children: <Widget>[
-                                  ListTile(
-                                      title: const Center(child: Text('Settings')),
-                                      selected: _selectedIndex == 0,
-                                      onTap: () {
-                                          setState(() {
-                                              _selectedIndex = 0;
-                                          });
-                                          Navigator.pop(context);
-                                      }
-                                  ),
-                                  ListTile(
-                                      title: const Center(child: Text('Language')),
-                                      selected: _selectedIndex == 1,
-                                      onTap: () {
-                                          setState(() {
-                                              _selectedIndex = 1;
-                                          });
-                                          Navigator.pop(context);
-                                      }
-                                  )
-                              ])
-                          )
-                      )
-                    ]
-                )
-            ),
             bottomNavigationBar: BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
+                backgroundColor: const Color(0xffd5dcdc),
                 currentIndex: widget.child.currentIndex,
                 onTap: (index) {
                     widget.child.goBranch(

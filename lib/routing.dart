@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:recardify/homepage.dart';
 import 'package:recardify/create-idea.dart';
 import 'package:recardify/navigation.dart';
+import 'package:recardify/learn.dart';
 
 class CustomNavigationHelper {
     static final CustomNavigationHelper _instance =
@@ -22,6 +23,8 @@ class CustomNavigationHelper {
         GlobalKey<NavigatorState>();
     static final GlobalKey<NavigatorState> languageTabNavigatorKey =
         GlobalKey<NavigatorState>();
+    static final GlobalKey<NavigatorState> learnTabNavigatiorKey =
+      GlobalKey<NavigatorState>();
 
     BuildContext get context =>
         router.routerDelegate.navigatorKey.currentContext!;
@@ -35,7 +38,7 @@ class CustomNavigationHelper {
     static const String settingsPath = '/settings';
     static const String createPath = '/create';
     static const String languagePath = '/language';
-    // viewPath?
+    static const String learnPath = '/learn';
 
     factory CustomNavigationHelper() {
         return _instance;
@@ -68,20 +71,17 @@ class CustomNavigationHelper {
                             )
                         ]
                     ),
-                    // StatefulShellBranch(
-                    //   navigatorKey: settingsTabNavigatorKey,
-                    //   routes: [
-                    //     GoRoute(
-                    //       path: settingsPath,
-                    //       pageBuilder: (context, state) {
-                    //         return getPage(
-                    //           child: const SettingsPage(),
-                    //           state: state,
-                    //         );
-                    //       },
-                    //     ),
-                    //   ],
-                    // ),
+                    StatefulShellBranch(
+                        navigatorKey: learnTabNavigatiorKey,
+                        routes: [
+                            GoRoute(
+                                path: learnPath,
+                                pageBuilder: (context, state) {
+                                    return getPage(child: const LearnPage(), state: state);
+                                },
+                            ),
+                        ],
+                    ),
                 ],
                 pageBuilder: (BuildContext context, GoRouterState state, StatefulNavigationShell navigationShell) {
                     return getPage(
@@ -90,45 +90,6 @@ class CustomNavigationHelper {
                     );
                 }
             ),
-            // GoRoute(
-            //   parentNavigatorKey: parentNavigatorKey,
-            //   path: signUpPath,
-            //   pageBuilder: (context, state) {
-            //     return getPage(
-            //       child: const SignUpPage(),
-            //       state: state,
-            //     );
-            //   },
-            // ),
-            // GoRoute(
-            //   parentNavigatorKey: parentNavigatorKey,
-            //   path: signInPath,
-            //   pageBuilder: (context, state) {
-            //     return getPage(
-            //       child: const SignInPage(),
-            //       state: state,
-            //     );
-            //   },
-            // ),
-            // GoRoute(
-            //   path: detailPath,
-            //   pageBuilder: (context, state) {
-            //     return getPage(
-            //       child: const DetailPage(),
-            //       state: state,
-            //     );
-            //   },
-            // ),
-            // GoRoute(
-            //   parentNavigatorKey: parentNavigatorKey,
-            //   path: rootDetailPath,
-            //   pageBuilder: (context, state) {
-            //     return getPage(
-            //       child: const DetailPage(),
-            //       state: state,
-            //     );
-            //   },
-            // ),
         ];
 
         router = GoRouter(

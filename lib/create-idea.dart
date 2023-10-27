@@ -68,6 +68,8 @@ class _CreateIdeaState extends State<CreateIdea> {
             title: _titleController.text,
             timeForCrafting: int.parse(_timeForCraftingController.text),
             boxSize: _boxSize,
+            rating: 0,
+            timesRated: 0,
             materialsNeeded: <String>[],
             steps: <String>[],
             imagesBase64: <String>[]
@@ -90,9 +92,17 @@ class _CreateIdeaState extends State<CreateIdea> {
             return;
         }
 
+        RegExp regex = RegExp(r'[^,]+');
+        Iterable<RegExpMatch> matches = regex.allMatches(_materialsController.text);
+
+        // Iterate through the matches and extract the text
+        for (RegExpMatch match in matches) {
+            String extractedText = match.group(0)!;
+            idea.materialsNeeded.add(extractedText);
+        }
+
         // check first if there are any symbols other than plain text, commas or whitespaces
         // regex for that: [^A-Za-z, \t]
-        idea.materialsNeeded.add(_materialsController.text);
         _submitIdea(idea.toJson());
     }
 
@@ -170,6 +180,8 @@ class _CreateIdeaState extends State<CreateIdea> {
                                                             child: TextField(
                                                                 controller: _titleController,
                                                                 decoration: InputDecoration(
+                                                                    filled: true,
+                                                                    fillColor: const Color(0xffd5dcdc),
                                                                     labelText: 'Add Title',
                                                                     border: OutlineInputBorder(
                                                                         borderRadius: BorderRadius.circular(10) // Rounded corners
@@ -230,6 +242,8 @@ class _CreateIdeaState extends State<CreateIdea> {
                                                           child: TextField(
                                                               controller: _timeForCraftingController,
                                                               decoration: InputDecoration(
+                                                                  filled: true,
+                                                                  fillColor: const Color(0xffd5dcdc),
                                                                   labelText: 'Add Time',
                                                                   border: OutlineInputBorder(
                                                                       borderRadius: BorderRadius.circular(10) // Rounded corners
@@ -274,7 +288,7 @@ class _CreateIdeaState extends State<CreateIdea> {
                                                         height: 150,
                                                         margin: const EdgeInsets.only(top: 30),
                                                         decoration: BoxDecoration(
-                                                            color: Colors.blue,
+                                                            color: Color(0xffc0c49b),
                                                             borderRadius: BorderRadius.circular(10) // Rounded corners
                                                         ),
                                                         child: ElevatedButton(
@@ -315,6 +329,8 @@ class _CreateIdeaState extends State<CreateIdea> {
                                                     child: TextField(
                                                         controller: _materialsController,
                                                         decoration: InputDecoration(
+                                                            filled: true,
+                                                            fillColor: const Color(0xffd5dcdc),
                                                             labelText: 'Add Materials',
                                                             border: OutlineInputBorder(
                                                                 borderRadius: BorderRadius.circular(10) // Rounded corners
@@ -362,7 +378,7 @@ class _CreateIdeaState extends State<CreateIdea> {
                                                                 height: 100,
                                                                 margin: const EdgeInsets.only(top: 15),
                                                                 decoration: BoxDecoration(
-                                                                    color: Colors.blue,
+                                                                    color: Color(0xffc0c49b),
                                                                     borderRadius: BorderRadius.circular(10) // Rounded corners
                                                                 ),
                                                                 child: ElevatedButton(
@@ -401,6 +417,8 @@ class _CreateIdeaState extends State<CreateIdea> {
                                                           child: TextField(
                                                               controller: _controllersList[i - 1],
                                                               decoration: InputDecoration(
+                                                                  filled: true,
+                                                                  fillColor: Color(0xffd5dcdc),
                                                                   labelText: 'Add Instructions',
                                                                   border: OutlineInputBorder(
                                                                       borderRadius: BorderRadius.circular(10) // Rounded corners
@@ -420,7 +438,7 @@ class _CreateIdeaState extends State<CreateIdea> {
                                             onPressed: () {
                                                 _addStep();
                                             },
-                                            icon: const Icon(Icons.add, size: 24, color: Colors.blue)
+                                            icon: const Icon(Icons.add, size: 24, color: Color(0xffc0c49b))
                                         ),
                                         GestureDetector(
                                             onTap: () {
@@ -444,7 +462,7 @@ class _CreateIdeaState extends State<CreateIdea> {
                                 ),
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.blue, // Set the button's background color to blue
+                                        backgroundColor: Color(0xffc0c49b), // Set the button's background color to blue
                                         foregroundColor: Colors.white, // Set the text color to white
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // Adjust the button's border radius
                                         elevation: 5, // Add a slight elevation to the button
