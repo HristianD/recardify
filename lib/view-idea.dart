@@ -87,7 +87,7 @@ class _ViewIdeaState extends State<ViewIdea> {
                                           const SizedBox(
                                             height: 20,
                                           ),
-                                          Text(_idea.title, style: const TextStyle(fontSize: 40)),
+                                          Text(_idea.title, style: const TextStyle(fontSize: 30)),
                                           Text('${_idea.timeForCrafting.toString()} min', style: const TextStyle(fontSize: 20)),
                                           Container(
                                             width: 200, // Set the desired width for the frame
@@ -122,7 +122,7 @@ class _ViewIdeaState extends State<ViewIdea> {
                                           const Text('Materials needed:', style: TextStyle(fontSize: 20)),
                                           for (int i = 0; i < _idea.materialsNeeded.length; i++)
                                             SizedBox(
-                                                width: 110,
+                                                width: 200,
                                                 child: Text(
                                                     '\u2022 ${_idea.materialsNeeded[i]}',
                                                     maxLines: 1,

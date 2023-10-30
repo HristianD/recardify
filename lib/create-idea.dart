@@ -83,6 +83,7 @@ class _CreateIdeaState extends State<CreateIdea> {
 
         _images.forEach((image) {
             if (image != null) {
+                print(image.imageBase64);
                 idea.imagesBase64.add(image.imageBase64);
             }
         });

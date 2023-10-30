@@ -93,9 +93,7 @@ public class MainActivity extends FlutterActivity {
 
     private void submitIdea(Idea idea) {
         DatabaseReference ideasRef = DB.getReference("ideas");
-        System.out.println(idea);
         ideasRef.push().setValue(idea);
-//        System.out.println(ideasRef.push().setValue(idea).getException());
     }
 
     private void fetchIdeas() throws RuntimeException {

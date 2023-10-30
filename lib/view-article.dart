@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ViewArticle extends StatelessWidget {
     final int id;
@@ -38,7 +37,7 @@ class ViewArticle extends StatelessWidget {
                                                   children: <Widget>[
                                                       const Text('Source: '),
                                                       InkWell(
-                                                          onTap: () => launchUrl(Uri.parse(_getLink())),
+                                                          // onTap: () => launchUrl(Uri.parse(_getLink())),
                                                           child: Text(
                                                               _getSource(),
                                                               style: const TextStyle(decoration: TextDecoration.underline, color: Colors.blue)
