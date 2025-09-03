@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <TextView
+        android:id="@+id/home_page_view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="12dp"
+        android:width="335px"
+        android:height="108px"
+        android:fontFamily="@font/inter"
+        android:lineHeight="36px"
+        android:text="@string/home_page_text1"
+        android:textAlignment="center"
+        android:textColor="#0A4A14"
+        android:textFontWeight="900"
+        android:textSize="30px" />
+
+    <TextView
+        android:id="@+id/home_page_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="163dp"
+        android:layout_marginEnd="17dp"
+        android:width="318px"
+        android:height="108px"
+        android:fontFamily="@font/inter"
+        android:lineHeight="36px"
+        android:text="@string/home_page_text2"
+        android:textAlignment="center"
+        android:textColor="#0A4A14"
+        android:textFontWeight="900"
+        android:textSize="30px" />
+</RelativeLayout>
